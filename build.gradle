@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
+}
+
+group 'me.caille'
+version '0.1.0'
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'http://packages.confluent.io/maven/'
+    }
+}
+
+dependencies {
+    implementation 'org.apache.kafka:kafka-streams:2.6.0'
+    implementation 'io.confluent:kafka-streams-avro-serde:6.0.0'
+    implementation 'org.apache.commons:commons-configuration2:2.7'
+    implementation 'commons-beanutils:commons-beanutils:1.9.4'
+    implementation 'org.slf4j:slf4j-simple:1.7.30'
+}
+
+application {
+    mainClassName = 'PitcherIndexer'
+    applicationDefaultJvmArgs = ["-Dpitcher.props=local.properties"]
+}
